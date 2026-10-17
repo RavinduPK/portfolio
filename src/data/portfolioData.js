@@ -227,24 +227,33 @@ export const cvSkills = [
 export const careerClicksData = [
   {
     id: 1,
-    title: "University of Kelaniya Campus Life",
+    title: "University of Kelaniya — FCT",
     category: "Campus & Academics",
     date: "2023 — Present",
     image: "/clicks/uok_campus.jpg",
-    size: "large", // spans 2 cols on desktop
-    caption: "Memories, faculty sessions, and learning moments at University of Kelaniya."
+    size: "large", // spans 2 cols, 2 rows
+    caption: "Faculty of Computing and Technology, University of Kelaniya — Cyber Security Special."
   },
   {
     id: 2,
+    title: "Campus Life & Academic Journey",
+    category: "Campus & Academics",
+    date: "2023 — Present",
+    image: "/clicks/uok_campus_life.jpg",
+    size: "tall", // spans 1 col, 2 rows
+    caption: "Memories, faculty sessions, and student life across the University of Kelaniya campus."
+  },
+  {
+    id: 3,
     title: "Hackathon & Code Sprints",
     category: "Hackathons",
     date: "2024",
     image: "/clicks/hackathon.jpg",
-    size: "tall", // tall portrait slot
+    size: "standard",
     caption: "Intense 24-hour coding sprint building scalable software and security prototypes."
   },
   {
-    id: 3,
+    id: 4,
     title: "Cyber Security & CTF Challenges",
     category: "Cyber Security",
     date: "2024",
@@ -253,7 +262,7 @@ export const careerClicksData = [
     caption: "Hands-on capture-the-flag defense challenges and server hardening experiments."
   },
   {
-    id: 4,
+    id: 5,
     title: "Tech Meetups & Developer Workshops",
     category: "Community",
     date: "2023",
@@ -262,16 +271,16 @@ export const careerClicksData = [
     caption: "Connecting with software engineers, open-source contributors, and tech mentors."
   },
   {
-    id: 5,
+    id: 6,
     title: "DevOps & Cloud Lab Deployments",
     category: "DevOps & Cloud",
     date: "2024",
     image: "/clicks/devops_cloud.jpg",
-    size: "wide", // spans 2 cols horizontally
+    size: "wide", // spans 2 cols, 1 row
     caption: "Architecting Kubernetes clusters, Docker containers, and CI/CD pipelines in the lab."
   },
   {
-    id: 6,
+    id: 7,
     title: "School Memories @ G/All Saints' College",
     category: "Roots & School",
     date: "Schooling Days",

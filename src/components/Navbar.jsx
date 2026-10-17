@@ -96,7 +96,7 @@ export default function Navbar() {
             aria-label={isMuted ? "Unmute cyber sound effects" : "Mute cyber sound effects"}
           >
             {isMuted ? (
-              <svg className="sfx-speaker-icon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <svg className="sfx-speaker-icon" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor" fillOpacity="0.25" />
                 <line x1="23" y1="9" x2="17" y2="15" />
                 <line x1="17" y1="9" x2="23" y2="15" />

@@ -733,12 +733,17 @@ body::after {
 .marquee-track {
   display: flex;
   gap: 3.5rem;
-  animation: marqueeLeft 25s linear infinite;
+  animation: marqueeLeft 13s linear infinite;
   white-space: nowrap;
+  will-change: transform;
 }
 
 .marquee-track.reverse {
-  animation: marqueeRight 28s linear infinite;
+  animation: marqueeRight 15s linear infinite;
+}
+
+.marquee-wrap:hover .marquee-track {
+  animation-play-state: paused;
 }
 
 .m-item {
@@ -2556,24 +2561,28 @@ body::after {
 
 /* ══ CONTACT ══ */
 #contact {
-  padding: 10rem 5vw;
+  padding: clamp(6rem, 9vw, 10rem) 5vw;
   position: relative;
   z-index: 1;
+  width: 100%;
+  overflow: hidden;
 }
 
 .contact-split {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 8rem;
+  gap: clamp(3rem, 5.5vw, 7rem);
   align-items: start;
+  width: 100%;
 }
 
 .c-big {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(3rem, 6vw, 5.5rem);
+  font-size: clamp(2.8rem, 5.5vw, 5.5rem);
   line-height: .9;
   color: var(--pure);
-  margin-bottom: 2rem;
+  margin-bottom: 1.8rem;
+  letter-spacing: .02em;
 }
 
 .c-big .outline {
@@ -2582,37 +2591,46 @@ body::after {
 }
 
 .c-intro {
-  font-size: 1.08rem;
+  font-size: clamp(0.95rem, 1.4vw, 1.08rem);
   color: var(--silver);
-  line-height: 1.85;
-  margin-bottom: 3rem;
+  line-height: 1.8;
+  margin-bottom: 2.5rem;
+  max-width: 540px;
 }
 
 .c-links {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.9rem;
+  width: 100%;
 }
 
 .c-link {
   display: flex;
   align-items: center;
-  gap: 1.2rem;
-  padding: 1.1rem 1.4rem;
+  gap: 1.1rem;
+  padding: 1rem 1.3rem;
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid var(--line);
   border-radius: 12px;
   text-decoration: none;
   color: var(--white);
-  transition: all .35s ease;
+  transition: all .3s cubic-bezier(.23, 1, .32, 1);
   position: relative;
   overflow: hidden;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .c-link:hover {
-  background: rgba(255, 255, 255, 0.07);
+  background: rgba(255, 255, 255, 0.06);
   border-color: rgba(255, 255, 255, 0.28);
   transform: translateY(-2px);
+}
+
+.c-link:active {
+  transform: translateY(0);
 }
 
 .c-icon {
@@ -2643,31 +2661,35 @@ body::after {
 .c-link-content {
   display: flex;
   flex-direction: column;
-  gap: .15rem;
-  flex-grow: 1;
+  gap: .2rem;
+  flex: 1 1 0%;
+  min-width: 0;
   overflow: hidden;
 }
 
 .c-link-label {
   font-family: 'Space Mono', monospace;
-  font-size: .7rem;
-  letter-spacing: .15em;
+  font-size: .68rem;
+  letter-spacing: .14em;
   text-transform: uppercase;
   color: var(--muted);
+  white-space: nowrap;
 }
 
 .c-link-val {
-  font-size: .95rem;
+  font-size: .94rem;
   color: var(--pure);
   font-weight: 400;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  max-width: 100%;
 }
 
 .c-link-arrow {
   font-size: 1.1rem;
   color: var(--muted);
+  flex-shrink: 0;
   transition: transform .3s, color .3s;
 }
 
@@ -2680,28 +2702,62 @@ body::after {
 .c-form {
   display: flex;
   flex-direction: column;
-  gap: 1.6rem;
+  gap: 1.4rem;
+  width: 100%;
+  max-width: 100%;
+}
+
+.c-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+  width: 100%;
 }
 
 .fg {
   position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.f-label {
+  display: block;
+  font-family: 'Space Mono', monospace;
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--silver);
+  margin-bottom: .45rem;
+  font-weight: 500;
+}
+
+.f-req {
+  color: #25d366;
+  margin-left: .2rem;
+  font-weight: bold;
 }
 
 .fi {
   width: 100%;
+  max-width: 100%;
   background: rgba(255, 255, 255, 0.025);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 10px;
-  padding: 1.1rem 1.2rem;
+  padding: 1rem 1.15rem;
   color: var(--white);
   font-family: 'Outfit', sans-serif;
   font-size: 16px;
+  line-height: 1.5;
   outline: none;
   transition: border-color .3s, background-color .3s, box-shadow .3s;
+  box-sizing: border-box;
 }
 
 .fi::placeholder {
   color: var(--muted);
+  font-size: .92rem;
+  font-family: 'Outfit', sans-serif;
 }
 
 .fi:focus {
@@ -2710,29 +2766,68 @@ body::after {
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.04);
 }
 
-textarea.fi {
+textarea.fi,
+.fi-textarea {
   resize: vertical;
   min-height: 120px;
 }
 
 .form-feedback {
-  padding: 1.2rem 1.6rem;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  font-family: 'Space Mono', monospace;
-  font-size: .85rem;
-  letter-spacing: .1em;
-  color: var(--pure);
+  display: flex;
+  align-items: flex-start;
+  gap: .85rem;
+  padding: 1.1rem 1.4rem;
+  background: rgba(37, 211, 102, 0.08);
+  border: 1px solid rgba(37, 211, 102, 0.28);
   border-radius: 10px;
-  animation: fadeUp .4s ease both;
+  color: var(--white);
+  font-size: .88rem;
+  line-height: 1.5;
+  animation: fadeUp .35s ease both;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.form-feedback-icon {
+  color: #25d366;
+  font-weight: bold;
+  font-size: 1.15rem;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: .1rem;
+}
+
+.form-feedback-body {
+  flex: 1;
+  min-width: 0;
+  word-break: break-word;
+}
+
+.feedback-sublink {
+  margin-top: .5rem;
+  font-size: .84rem;
+}
+
+.feedback-sublink a {
+  color: #25d366;
+  text-decoration: underline;
+  font-weight: 600;
+  transition: color .2s;
+}
+
+.feedback-sublink a:hover {
+  color: #fff;
 }
 
 .btn-send {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   align-self: flex-start;
   font-family: 'Space Mono', monospace;
-  font-size: .85rem;
+  font-size: .84rem;
   font-weight: 700;
-  letter-spacing: .15em;
+  letter-spacing: .08em;
   text-transform: uppercase;
   color: var(--pure);
   background: rgba(255, 255, 255, 0.08);
@@ -2741,35 +2836,71 @@ textarea.fi {
   border: 1px solid rgba(255, 255, 255, 0.16);
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.15);
   border-radius: 100px;
-  padding: 1.2rem 3rem;
+  padding: 1.15rem 2.4rem;
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  transition: background .4s, box-shadow .4s, transform .3s;
-  margin-top: .8rem;
+  transition: all .35s cubic-bezier(.23, 1, .32, 1);
+  margin-top: .6rem;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .btn-send::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(255, 255, 255, 0.12);
+  background: linear-gradient(135deg, rgba(37, 211, 102, 0.15), rgba(255, 255, 255, 0.1));
   opacity: 0;
   transition: opacity .4s ease;
 }
 
 .btn-send:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  border-color: rgba(37, 211, 102, 0.4);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25), 0 0 20px rgba(37, 211, 102, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.25);
 }
 
 .btn-send:hover::before {
   opacity: 1;
 }
 
-.btn-send span {
+.btn-send:active {
+  transform: translateY(0);
+}
+
+.btn-send-content {
   position: relative;
   z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .65rem;
+  width: 100%;
+}
+
+.btn-send-icon {
+  color: #25d366;
+  flex-shrink: 0;
+  transition: transform .3s ease;
+}
+
+.btn-send:hover .btn-send-icon {
+  transform: scale(1.1);
+}
+
+.btn-send-text {
+  white-space: normal;
+  text-align: center;
+}
+
+.btn-send-arrow {
+  flex-shrink: 0;
+  transition: transform .3s ease;
+}
+
+.btn-send:hover .btn-send-arrow {
+  transform: translateX(4px);
 }
 
 /* ══ FOOTER ══ */
@@ -2894,7 +3025,7 @@ textarea.fi {
    RESPONSIVE DESIGN (TABLET & MOBILE)
 ══════════════════════════════════════ */
 @media (max-width: 1024px) {
-  #about, #contact .contact-split, .cv-inner {
+  #about, .cv-inner {
     gap: 4rem;
   }
   .skills-intro {
@@ -3102,15 +3233,28 @@ textarea.fi {
   }
 
   #contact {
-    padding: 6rem 5vw;
+    padding: 5.5rem 5vw;
   }
   .contact-split {
     grid-template-columns: 1fr;
-    gap: 3.5rem;
+    gap: 3.2rem;
+  }
+  .c-intro {
+    max-width: 100%;
+    margin-bottom: 2rem;
+  }
+  .c-links {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.9rem;
   }
   .btn-send {
     width: 100%;
-    text-align: center;
+    align-self: stretch;
+    justify-content: center;
+    padding: 1.1rem 1.6rem;
+    font-size: .82rem;
+    letter-spacing: .06em;
   }
 
   .footer-wrap {
@@ -3562,23 +3706,29 @@ textarea.fi {
   }
 
   #contact {
-    padding: 5rem 5vw 4rem;
+    padding: 4.5rem 5vw 3.5rem;
+  }
+  .contact-split {
+    gap: 2.5rem;
   }
   .c-big {
     font-size: clamp(2.2rem, 7.5vw, 3.6rem);
     line-height: .92;
+    margin-bottom: 1.4rem;
   }
   .c-intro {
     font-size: .92rem;
     line-height: 1.7;
-    margin-bottom: 2rem;
+    margin-bottom: 1.8rem;
   }
   .c-links {
+    display: flex;
+    flex-direction: column;
     gap: .75rem;
   }
   .c-link {
-    padding: .95rem 1.1rem;
-    gap: .9rem;
+    padding: .85rem 1rem;
+    gap: .85rem;
     border-radius: 10px;
   }
   .c-icon {
@@ -3590,19 +3740,50 @@ textarea.fi {
     height: 16px;
   }
   .c-link-label {
-    font-size: .65rem;
+    font-size: .62rem;
+    letter-spacing: .1em;
   }
   .c-link-val {
-    font-size: .88rem;
+    font-size: clamp(0.82rem, 3.4vw, 0.92rem);
+  }
+  .c-link-arrow {
+    font-size: .95rem;
+  }
+  .c-form {
+    gap: 1.2rem;
+  }
+  .c-form-grid {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+  .f-label {
+    font-size: .68rem;
+    margin-bottom: .35rem;
   }
   .fi {
-    padding: 1rem 1rem;
+    padding: .9rem 1rem;
     font-size: 16px;
     border-radius: 8px;
   }
+  textarea.fi,
+  .fi-textarea {
+    min-height: 110px;
+  }
   .btn-send {
-    padding: 1.1rem 1.8rem;
-    font-size: .8rem;
+    width: 100%;
+    align-self: stretch;
+    justify-content: center;
+    padding: 1rem 1.2rem;
+    font-size: .78rem;
+    letter-spacing: .05em;
+    border-radius: 12px;
+  }
+  .btn-send-content {
+    gap: .5rem;
+  }
+  .btn-send-icon {
+    width: 16px;
+    height: 16px;
   }
 }
 
@@ -3623,5 +3804,28 @@ textarea.fi {
   .avatar-border-tl,
   .avatar-border-br {
     display: none;
+  }
+  .c-link {
+    padding: .75rem .85rem;
+    gap: .7rem;
+  }
+  .c-icon {
+    width: 34px;
+    height: 34px;
+  }
+  .c-icon svg {
+    width: 15px;
+    height: 15px;
+  }
+  .c-link-val {
+    font-size: .78rem;
+  }
+  .fi {
+    padding: .85rem .9rem;
+  }
+  .btn-send {
+    padding: .9rem .85rem;
+    font-size: .72rem;
+    letter-spacing: .03em;
   }
 }

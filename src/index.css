@@ -332,6 +332,111 @@ body::after {
   50%      { opacity: 0; }
 }
 
+/* Navigation Cyber SFX Toggle Button */
+.nav-sfx-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #00f0ff;
+  background: rgba(0, 240, 255, 0.06);
+  border: 1px solid rgba(0, 240, 255, 0.28);
+  border-radius: 100px;
+  padding: 0.52rem 1.05rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  user-select: none;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 0 12px rgba(0, 240, 255, 0.12);
+}
+
+.nav-sfx-btn:hover {
+  background: rgba(0, 240, 255, 0.16);
+  border-color: #00f0ff;
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.45);
+  transform: translateY(-1px);
+}
+
+.nav-sfx-btn.muted {
+  color: var(--silver, #888);
+  border-color: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow: none;
+}
+
+.nav-sfx-btn.muted:hover {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.35);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.15);
+}
+
+/* Sound Wave Equalizer inside button */
+.sfx-bars {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2.5px;
+  height: 11px;
+}
+
+.sfx-bar {
+  width: 2px;
+  background: currentColor;
+  border-radius: 1px;
+  transform-origin: bottom;
+}
+
+.sfx-bar.bar1 {
+  height: 6px;
+  animation: cyberSoundWave 0.7s ease-in-out infinite alternate;
+}
+
+.sfx-bar.bar2 {
+  height: 11px;
+  animation: cyberSoundWave 0.5s ease-in-out infinite alternate 0.15s;
+}
+
+.sfx-bar.bar3 {
+  height: 8px;
+  animation: cyberSoundWave 0.65s ease-in-out infinite alternate 0.3s;
+}
+
+@keyframes cyberSoundWave {
+  0%   { transform: scaleY(0.35); opacity: 0.6; }
+  100% { transform: scaleY(1); opacity: 1; }
+}
+
+.nav-sfx-btn .sfx-speaker-icon {
+  display: block;
+}
+
+/* Drawer SFX Button */
+.drawer-sfx-btn {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #00f0ff;
+  background: rgba(0, 240, 255, 0.08);
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  border-radius: 100px;
+  padding: 0.4rem 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.drawer-sfx-btn.muted {
+  color: var(--dim, #888);
+  border-color: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+
 
 .nav-menu {
   display: flex;
@@ -3788,6 +3893,11 @@ textarea.fi,
   }
   .nav-logo {
     font-size: 1.6rem;
+  }
+  .nav-sfx-btn {
+    padding: .42rem .75rem;
+    font-size: .68rem;
+    gap: .4rem;
   }
   .nav-cta {
     display: none;

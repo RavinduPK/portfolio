@@ -1,10 +1,25 @@
 import { useState, useEffect } from 'react';
 import { personalData, navLinks } from '../data/portfolioData';
 import CyberLogo from './CyberLogo';
+import { cyberAudio } from '../utils/cyberAudio';
 
 export default function Navbar() {
   const [activeSection, setActiveSection] = useState('');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isMuted, setIsMuted] = useState(cyberAudio.isMuted);
+
+  useEffect(() => {
+    return cyberAudio.subscribe((muted) => {
+      setIsMuted(muted);
+    });
+  }, []);
+
+  const handleToggleSound = (e) => {
+    e.preventDefault();
+    cyberAudio.unlock();
+    const muted = cyberAudio.toggleMute();
+    setIsMuted(muted);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -72,6 +87,30 @@ export default function Navbar() {
         </ul>
 
         <div className="nav-actions">
+          {/* Cyber SFX Mute/Unmute Toggle Button */}
+          <button
+            type="button"
+            className={`nav-sfx-btn ${isMuted ? 'muted' : 'active'}`}
+            onClick={handleToggleSound}
+            title={isMuted ? "Sound is Muted (Click to Unmute)" : "Sound is Active (Click to Mute)"}
+            aria-label={isMuted ? "Unmute cyber sound effects" : "Mute cyber sound effects"}
+          >
+            {isMuted ? (
+              <svg className="sfx-speaker-icon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor" fillOpacity="0.25" />
+                <line x1="23" y1="9" x2="17" y2="15" />
+                <line x1="17" y1="9" x2="23" y2="15" />
+              </svg>
+            ) : (
+              <span className="sfx-bars" aria-hidden="true">
+                <span className="sfx-bar bar1" />
+                <span className="sfx-bar bar2" />
+                <span className="sfx-bar bar3" />
+              </span>
+            )}
+            <span className="sfx-text">{isMuted ? "SFX OFF" : "SFX ON"}</span>
+          </button>
+
           <a
             href="#contact"
             className="nav-cta"
@@ -101,6 +140,15 @@ export default function Navbar() {
             <span className="drawer-status-dot" />
             <span>Available for Builds &amp; Roles</span>
           </div>
+
+          <button
+            type="button"
+            className={`drawer-sfx-btn ${isMuted ? 'muted' : 'active'}`}
+            onClick={handleToggleSound}
+            aria-label="Toggle Cyber Sound Effects"
+          >
+            {isMuted ? "🔇 SFX OFF" : "🔊 SFX ON"}
+          </button>
         </div>
 
         <ul className="mobile-nav-list">

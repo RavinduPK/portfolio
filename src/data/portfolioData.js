@@ -3,10 +3,10 @@ export const personalData = {
   shortName: "KALHARA.DEV",
   initials: "RPK",
   profileImage: "/profile.jpg",
-  role: "Computer Science Undergraduate · Cyber Security Special",
-  eyebrow: "CS Undergraduate @ University of Kelaniya — Cyber Security Special",
+  role: "Software Engineer · Cyber Security Specialist",
+  eyebrow: "SOFTWARE ENGINEER · CYBERSECURITY SPECIALIST",
   heroTitle: ["BUILDING", "SCALABLE & SECURE", "DIGITAL SYSTEMS."],
-  heroDescription: "Computer Science undergraduate at the University of Kelaniya specializing in Cyber Security. I engineer responsive web applications, mobile platforms, and resilient cloud systems with automated DevOps pipelines.",
+  heroDescription: "I engineer responsive web applications, high-performance mobile platforms, and resilient cloud systems with automated DevOps pipelines and security-first architecture.",
   aboutTag: "About Me",
   aboutHeading: {
     line1: "DESIGN.",

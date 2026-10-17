@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { personalData, navLinks } from '../data/portfolioData';
+import CyberLogo from './CyberLogo';
 
 export default function Navbar() {
   const [activeSection, setActiveSection] = useState('');
@@ -52,9 +53,8 @@ export default function Navbar() {
   return (
     <>
       <nav className="navbar-container">
-        <a href="#hero" className="nav-logo" onClick={(e) => handleNavClick(e, '#hero')}>
-          {personalData.shortName}
-        </a>
+        <CyberLogo onClick={(e) => handleNavClick(e, '#hero')} />
+
 
         {/* Desktop Menu */}
         <ul className="nav-menu">

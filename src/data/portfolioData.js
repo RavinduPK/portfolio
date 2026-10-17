@@ -245,12 +245,12 @@ export const careerClicksData = [
   },
   {
     id: 3,
-    title: "Hackathon & Code Sprints",
+    title: "CODESPLASH Hackathon",
     category: "Hackathons",
     date: "2024",
     image: "/clicks/hackathon.jpg",
     size: "standard",
-    caption: "Intense 24-hour coding sprint building scalable software and security prototypes."
+    caption: "Team building, rapid software prototyping, and intense collaborative coding sprint at CODESPLASH."
   },
   {
     id: 4,
@@ -263,12 +263,17 @@ export const careerClicksData = [
   },
   {
     id: 5,
-    title: "Tech Meetups & Developer Workshops",
+    title: "Tech Meetups & Media Sessions",
     category: "Community",
-    date: "2023",
+    date: "2024",
     image: "/clicks/meetups.jpg",
+    images: [
+      "/clicks/meetups.jpg",
+      "/clicks/uok_award.jpg",
+      "/clicks/uok_delegation.jpg"
+    ],
     size: "standard",
-    caption: "Connecting with software engineers, open-source contributors, and tech mentors."
+    caption: "Panel discussion, university media sessions, and collaborative tech forums with University of Kelaniya Media Unit."
   },
   {
     id: 6,
@@ -278,14 +283,5 @@ export const careerClicksData = [
     image: "/clicks/devops_cloud.jpg",
     size: "wide", // spans 2 cols, 1 row
     caption: "Architecting Kubernetes clusters, Docker containers, and CI/CD pipelines in the lab."
-  },
-  {
-    id: 7,
-    title: "School Memories @ G/All Saints' College",
-    category: "Roots & School",
-    date: "Schooling Days",
-    image: "/clicks/allsaints_school.jpg",
-    size: "standard",
-    caption: "Where the journey ignited — early school memories, science exhibitions, and friends."
   }
 ];

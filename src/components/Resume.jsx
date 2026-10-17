@@ -1,9 +1,24 @@
+import { useState } from 'react';
 import { personalData, cvExperience, cvSkills } from '../data/portfolioData';
 
 export default function Resume() {
+  const [toastMessage, setToastMessage] = useState('');
+
   const handleDownload = (e) => {
-    // We can allow natural download or show a helpful notification if mock PDF
-    // alert or smooth trigger
+    e.preventDefault();
+    setToastMessage('✓ Downloading Ravindu_Kalhara_CV.pdf (Technical Resume · CS & Security)...');
+    
+    // Create temporary anchor to trigger download if file exists or simulate clean resume
+    const link = document.createElement('a');
+    link.href = '/Ravindu_Kalhara_CV.pdf';
+    link.download = personalData.cv.downloadFileName || 'Ravindu_Kalhara_CV.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    setTimeout(() => {
+      setToastMessage('');
+    }, 4500);
   };
 
   return (
@@ -23,10 +38,7 @@ export default function Resume() {
             <a
               href="#cv"
               className="cv-download-btn"
-              onClick={(e) => {
-                e.preventDefault();
-                alert('Demo: In a production deployment, attach your PDF resume path here!');
-              }}
+              onClick={handleDownload}
             >
               <span>Download CV</span>
               <div className="cv-dl-icon">
@@ -56,6 +68,12 @@ export default function Resume() {
             </a>
           </div>
 
+          {toastMessage && (
+            <div className="cv-download-toast" role="status">
+              {toastMessage}
+            </div>
+          )}
+
           <div className="cv-file-info">
             {personalData.cv.meta.map((m) => (
               <div key={m} className="cv-file-meta">
@@ -72,7 +90,10 @@ export default function Resume() {
               <div className="cv-card-name">{personalData.name}</div>
               <div className="cv-card-role">{personalData.role}</div>
             </div>
-            <div className="cv-card-badge">Open to Work</div>
+            <div className="cv-card-badge">
+              <span className="cv-status-pulse" />
+              Open to Work
+            </div>
           </div>
 
           <div className="cv-exp-list">

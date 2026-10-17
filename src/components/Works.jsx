@@ -88,13 +88,28 @@ export default function Works() {
               <WorkCardPattern type={project.patternType} />
             </div>
             <div className="work-info">
-              <div className="wi-cat">{project.category}</div>
-              <div className="wi-title">{project.title}</div>
-              <div className="wi-desc">{project.description}</div>
+              <div className="wi-top-row">
+                <span className="wi-cat">{project.category}</span>
+                {project.highlight && (
+                  <span className="wi-highlight-badge">{project.highlight}</span>
+                )}
+              </div>
+              <h3 className="wi-title">{project.title}</h3>
+              <p className="wi-desc">{project.description}</p>
+              {project.tags && (
+                <div className="wi-tags">
+                  {project.tags.map((tag) => (
+                    <span key={tag} className="wi-tag-pill">{tag}</span>
+                  ))}
+                </div>
+              )}
             </div>
             <div className="work-foot">
               <span className="wf-name">{project.footerName}</span>
-              <div className="wf-arrow">&#8599;</div>
+              <div className="wf-action">
+                <span className="wf-explore-txt">Explore Build</span>
+                <div className="wf-arrow">&#8599;</div>
+              </div>
             </div>
           </div>
         ))}

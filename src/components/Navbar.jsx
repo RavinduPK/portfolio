@@ -22,15 +22,21 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Prevent background scrolling when mobile menu is active
+  // Prevent background scrolling when mobile menu is active & listen for Escape
   useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') setMobileMenuOpen(false);
+    };
+
     if (mobileMenuOpen) {
       document.body.style.overflow = 'hidden';
+      window.addEventListener('keydown', handleKeyDown);
     } else {
       document.body.style.overflow = '';
     }
     return () => {
       document.body.style.overflow = '';
+      window.removeEventListener('keydown', handleKeyDown);
     };
   }, [mobileMenuOpen]);
 
@@ -90,15 +96,23 @@ export default function Navbar() {
 
       {/* Mobile Drawer Menu */}
       <div className={`mobile-nav-overlay ${mobileMenuOpen ? 'active' : ''}`}>
+        <div className="mobile-drawer-header">
+          <div className="mobile-drawer-status">
+            <span className="drawer-status-dot" />
+            <span>Available for Builds &amp; Roles</span>
+          </div>
+        </div>
+
         <ul className="mobile-nav-list">
-          {navLinks.map((link) => (
+          {navLinks.map((link, idx) => (
             <li key={link.label}>
               <a
                 href={link.href}
                 className={activeSection === link.href.substring(1) ? 'active' : ''}
                 onClick={(e) => handleNavClick(e, link.href)}
               >
-                {link.label}
+                <span className="mobile-nav-num">0{idx + 1}</span>
+                <span className="mobile-nav-text">{link.label}</span>
               </a>
             </li>
           ))}
@@ -112,6 +126,19 @@ export default function Navbar() {
             </a>
           </li>
         </ul>
+
+        <div className="mobile-drawer-footer">
+          <a href={`mailto:${personalData.contact.email}`} className="drawer-email-link">
+            {personalData.contact.email}
+          </a>
+          <div className="drawer-social-row">
+            <a href={`https://wa.me/${personalData.contact.whatsapp}`} target="_blank" rel="noreferrer">WhatsApp</a>
+            <span>·</span>
+            <a href={personalData.contact.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
+            <span>·</span>
+            <a href={personalData.contact.github} target="_blank" rel="noreferrer">GitHub</a>
+          </div>
+        </div>
       </div>
     </>
   );

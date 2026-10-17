@@ -87,7 +87,10 @@ export const worksData = [
     description: "Modern analytics and server management dashboard with intuitive responsive UI design and real-time telemetry.",
     footerName: "Nexus Web Portal",
     bgClass: "wb1",
-    patternType: "circles"
+    patternType: "circles",
+    tags: ["React 19", "Next.js", "Node.js", "WebSockets"],
+    accent: "cyan",
+    highlight: "Real-time Telemetry"
   },
   {
     id: 2,
@@ -96,7 +99,10 @@ export const worksData = [
     description: "Feature-packed mobile application featuring biometric authentication, offline synchronization, and seamless UX.",
     footerName: "Sentinel Mobile App",
     bgClass: "wb2",
-    patternType: "dots"
+    patternType: "dots",
+    tags: ["Flutter", "Dart", "Biometrics", "Firebase"],
+    accent: "emerald",
+    highlight: "Biometric Security"
   },
   {
     id: 3,
@@ -105,7 +111,10 @@ export const worksData = [
     description: "Enterprise deployment workflow utilizing Docker containerization, Kubernetes orchestration, and zero-downtime rollouts.",
     footerName: "K8s DevOps Pipeline",
     bgClass: "wb3",
-    patternType: "hatch"
+    patternType: "hatch",
+    tags: ["Docker", "Kubernetes", "Helm", "CI/CD GitOps"],
+    accent: "indigo",
+    highlight: "Zero-Downtime Rollout"
   },
   {
     id: 4,
@@ -114,7 +123,10 @@ export const worksData = [
     description: "Identity access management gateway with encrypted API proxying, policy enforcement, and automated threat detection.",
     footerName: "Zero-Trust Security Gateway",
     bgClass: "wb4",
-    patternType: "polygons"
+    patternType: "polygons",
+    tags: ["OAuth2 / OIDC", "Cloud Defense", "Linux Hardening", "PenTesting"],
+    accent: "amber",
+    highlight: "Active Threat Defense"
   }
 ];
 
@@ -218,7 +230,7 @@ export const careerClicksData = [
     title: "University of Kelaniya Campus Life",
     category: "Campus & Academics",
     date: "2023 — Present",
-    image: "", // Place your image path here (e.g. "/clicks/uok_campus.jpg")
+    image: "/clicks/uok_campus.jpg",
     size: "large", // spans 2 cols on desktop
     caption: "Memories, faculty sessions, and learning moments at University of Kelaniya."
   },
@@ -227,7 +239,7 @@ export const careerClicksData = [
     title: "Hackathon & Code Sprints",
     category: "Hackathons",
     date: "2024",
-    image: "",
+    image: "/clicks/hackathon.jpg",
     size: "tall", // tall portrait slot
     caption: "Intense 24-hour coding sprint building scalable software and security prototypes."
   },
@@ -236,7 +248,7 @@ export const careerClicksData = [
     title: "Cyber Security & CTF Challenges",
     category: "Cyber Security",
     date: "2024",
-    image: "",
+    image: "/clicks/cybersecurity.jpg",
     size: "standard",
     caption: "Hands-on capture-the-flag defense challenges and server hardening experiments."
   },
@@ -245,7 +257,7 @@ export const careerClicksData = [
     title: "Tech Meetups & Developer Workshops",
     category: "Community",
     date: "2023",
-    image: "",
+    image: "/clicks/meetups.jpg",
     size: "standard",
     caption: "Connecting with software engineers, open-source contributors, and tech mentors."
   },
@@ -254,7 +266,7 @@ export const careerClicksData = [
     title: "DevOps & Cloud Lab Deployments",
     category: "DevOps & Cloud",
     date: "2024",
-    image: "",
+    image: "/clicks/devops_cloud.jpg",
     size: "wide", // spans 2 cols horizontally
     caption: "Architecting Kubernetes clusters, Docker containers, and CI/CD pipelines in the lab."
   },
@@ -263,7 +275,7 @@ export const careerClicksData = [
     title: "School Memories @ G/All Saints' College",
     category: "Roots & School",
     date: "Schooling Days",
-    image: "",
+    image: "/clicks/allsaints_school.jpg",
     size: "standard",
     caption: "Where the journey ignited — early school memories, science exhibitions, and friends."
   }
